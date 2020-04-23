@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.where(user_id: current_user)
+    @items = Item.all
   end
 
   # GET /items/1
