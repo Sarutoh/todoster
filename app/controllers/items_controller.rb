@@ -1,10 +1,12 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :find_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    if user_signed_in?
+      @items = Item.where(:user_id => current_user.id).order("created_at DESC")
+    end
   end
 
   # GET /items/1
@@ -63,7 +65,7 @@ class ItemsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_item
+    def find_item
       @item = Item.find(params[:id])
     end
 
