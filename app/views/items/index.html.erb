@@ -1,15 +1,7 @@
-<p id="notice"><%= notice %></p>
-<div>
-  <h1>Tasks</h1>
-</div>
-
-    <% @items.each do |item| %>
-    <h3>
-      <%= item.item %><br>
-      created <%= time_ago_in_words(item.created_at)%> ago.
-      <%= link_to 'Edit', edit_item_path(item) %>
-      <%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </h3>
-    <% end %>
-
-<%= link_to 'New Task', new_item_path %>
+<% if user_signed_in? %>
+	<% @items.each do |item| %>
+		<p><%= item.item %></p>
+	<% end %>
+<% else %>
+	<%= render 'welcome_page' %>
+	<% end %>
