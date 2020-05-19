@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     if user_signed_in?
-      @items = Item.where(:user_id => current_user.id).order("created_at DESC")
+      @items = current_user.items.order(created_at: :desc)
     end
   end
 
