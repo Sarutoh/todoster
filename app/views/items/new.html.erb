@@ -1,5 +1,5 @@
-<h1>New Task</h1>
+<h1>New Item</h1>
 
 <%= render 'form', item: @item %>
 
-<%= link_to 'Back', items_path %>
+<%= link_to 'Back', task_items_path(@task) %>

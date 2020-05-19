@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
-	<% @tasks.each do |task| %>
-		<p><%= task.title %></p>
-		<p><%= task%></p>
+	<% @items.each do |item| %>
+		<p><%= item.item %></p>
+		<p><%= item%></p>
 	<% end %>
 <% else %>
 	<%= render 'welcome_page' %>

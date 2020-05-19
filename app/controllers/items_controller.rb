@@ -16,7 +16,8 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = current_user.items.build
+    @task = current_user.tasks.find(params.require(:task_id))
+    @item = @task.items.build
   end
 
   # GET /items/1/edit
@@ -26,11 +27,12 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = current_user.items.build(item_params)
+    @task = current_user.tasks.find(params.require(:task_id))
+    @item = @task.items.build(item_params)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to root_path, notice: 'Item was successfully created.' }
+        format.html { redirect_to task_path(@task), notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -44,7 +46,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to root_path, notice: 'Item was successfully updated.' }
+        format.html { redirect_to task_path(@task), notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -66,7 +68,8 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def find_item
-      @item = Item.find(params[:id])
+      @task = current_user.tasks.find(params.require(:task_id))
+      @item = @task.items.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

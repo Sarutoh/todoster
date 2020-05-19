@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  get 'tasks/index,'
-  get 'tasks/show,'
-  get 'tasks/create,'
-  get 'tasks/update,'
-  get 'tasks/destroy'
+  resources :tasks do
+  	resources :items
+  end
+  
   devise_for :users
-  resources :items
-  root 'items#index'
+  root 'tasks#index'
 end

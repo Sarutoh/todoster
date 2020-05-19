@@ -1,2 +1,9 @@
-<h1>Tasks#index,</h1>
-<p>Find me in app/views/tasks/index,.html.erb</p>
+<% if user_signed_in? %>
+	<% @tasks.each do |task| %>
+		<p><%= link_to task.title, task_path(task) %></p>
+		<%= link_to "Edit", edit_task_path(task)  %>
+		<hr>
+	<% end %>
+<% else %>
+	<%= render 'welcome_page' %>
+	<% end %>
