@@ -17,7 +17,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    byebug
     @task = current_user.tasks.build(task_params)
 
     respond_to do |format|
@@ -45,6 +44,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task = current_user.tasks.find(params.require(:id))
     @task.destroy
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
@@ -56,6 +56,6 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:title)
+    params.require(:task).permit(:title, :completed)
   end
 end

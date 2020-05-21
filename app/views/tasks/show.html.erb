@@ -1,8 +1,15 @@
 <p>
   <strong><h2>Task: <%= @task.title.capitalize %></h2></strong><br>
   <% @task.items.each  do |item|%>
-  <%= item.item %>|
-  <%= link_to "Edit", edit_task_item_path(@task, item) %></br>
+  	<% if item.completed == true %>
+		<%= link_to "Re-do", task_item_path(@task, item) + '?item[completed]=false', method: :patch, class: 'btn btn-outline-danger btn-sm'%> 
+		<s><%= item.item %>|</s>
+	<% else %>
+	    <%= link_to "Complete", task_item_path(@task, item) + '?item[completed]=true', method: :patch, class: 'btn btn-outline-primary btn-sm'%>    	
+		<%= item.item %>|
+	<% end %>
+  <%= link_to "Edit", edit_task_item_path(@task, item) %>|
+  <%= link_to "Delete", task_item_path(@task, item), method: :delete, data: {confirm: "Are you sure?"} %></br>
   <hr>
   <% end %>
 </p>
