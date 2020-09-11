@@ -1,20 +1,20 @@
-# Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
-default: &default
+efault: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV['DB_POOL'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+  port: 5432
 
 development:
   <<: *default
-  host: <%= ENV['DB_HOST'] || 'localhost' %>
-  database: surprisehr_development
+  database: todoster_development
 
 test:
   <<: *default
-  database: surprisehr_test
+  database: todoster_test
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
-  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>
+  <<: *default
+  database: todoster_development
