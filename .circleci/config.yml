@@ -7,8 +7,15 @@ jobs:
     docker:
       - image: 'circleci/ruby:3.0.0'
       - image: 'circleci/postgres:12.7'
+        environment:
+          POSTGRES_USER: circleci-demo-ruby
+          POSTGRES_DB: rails_blog_test
+          POSTGRES_PASSWORD: ""
     environment:
-      POSTGRES_PASSWORD: "P@ssword!"
+      PGHOST: 127.0.0.1
+      PGUSER: circleci-demo-ruby
+      PGPASSWORD: ""
+      RAILS_ENV: test
     steps:
       - checkout
       - bundle-install/bundle-install
