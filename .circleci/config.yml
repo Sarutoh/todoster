@@ -9,7 +9,6 @@ jobs:
     steps:
       - checkout
       - bundle-install/bundle-install
-      - run: bundle exec rails db:drop
       - run: bundle exec rake db:create RAILS_ENV=test
       - run: bundle exec rake db:migrate RAILS_ENV=test
       - run: bundle exec rspec
