@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   bundle-install: toshimaru/bundle-install@0.3.1
+  rubocop: hanachin/rubocop@0.0.6
 jobs:
   rspec:
     docker:
@@ -8,10 +9,17 @@ jobs:
     steps:
       - checkout
       - bundle-install/bundle-install
+      - run: bundle exec rails db:drop
+      - run: bundle exec rake db:create RAILS_ENV=test
+      - run: bundle exec rake db:migrate RAILS_ENV=test
       - run: bundle exec rspec
 
 workflows:
   version: 2
-  build_and_test:
+  test:
     jobs:
       - rspec
+  rubocop:
+    jobs:
+      - rubocop/rubocop
+  
