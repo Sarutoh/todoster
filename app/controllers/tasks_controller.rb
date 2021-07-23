@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   def index
-    if user_signed_in?
-      @tasks = current_user.tasks.order(created_at: :desc)
-    end
+    @tasks = current_user.tasks.order(created_at: :desc) if user_signed_in?
   end
 
   def show
     @task = current_user.tasks.find(params.require(:id))
   end
+
   def edit
     @task = current_user.tasks.find(params.require(:id))
   end
@@ -35,7 +36,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to root_path, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task}
+        format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
         format.json { render json: @task.errors, status: :unprocessable_entity }

@@ -1,9 +1,8 @@
+# frozen_string_literal: true
+
 class Item < ApplicationRecord
   after_save do
-
-    if task.items.count == task.items.completed.count
-      task.update!(completed: true)
-    end
+    task.update!(completed: true) if task.items.count == task.items.completed.count
   end
 
   belongs_to :task

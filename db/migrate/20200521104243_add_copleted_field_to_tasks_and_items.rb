@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddCopletedFieldToTasksAndItems < ActiveRecord::Migration[6.0]
   def change
     add_column :tasks, :completed, :boolean, default: false, null: false
