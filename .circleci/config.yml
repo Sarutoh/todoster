@@ -9,3 +9,9 @@ jobs:
       - checkout
       - bundle-install/bundle-install
       - run: bundle exec rspec
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - rspec
