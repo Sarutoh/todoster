@@ -1,15 +1,11 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@0.1.2
+  bundle-install: toshimaru/bundle-install@0.3.1
 jobs:
-  build:
+  rspec:
     docker:
-      - image: circleci/ruby:3.0.0
-    executor: ruby/default
+      - image: 'circleci/ruby:3.0.0'
     steps:
       - checkout
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
-      - bundle exec rspec
+      - bundle-install/bundle-install
+      - run: bundle exec rspec
