@@ -29,8 +29,8 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'simplecov', '~> 0.21.2'
   gem 'selenium-webdriver'
+  gem 'simplecov', '~> 0.21.2'
   gem 'webdrivers'
 end
 
