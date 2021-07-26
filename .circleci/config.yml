@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.1.0
   node: circleci/node@2
+  rubocop: hanachin/rubocop@0.0.6
 
 jobs:
   build:
@@ -44,9 +45,14 @@ jobs:
           name: Database setup
           command: bundle exec rails db:setup
       # Run rspec in parallel
-      - ruby/rspec-test
-      - ruby/rubocop-check
-
+      # - ruby/rspec-test
+      # - ruby/rubocop-check
+      - run: 
+          name: Rspec
+          command: bundle exec rspec
+      - run:
+          name: Rubocop
+          command: rubocop/rubocop
 workflows:
   version: 2
   build_and_test:
