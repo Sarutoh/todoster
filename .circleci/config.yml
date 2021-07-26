@@ -14,6 +14,7 @@ jobs:
     steps:
       - checkout
       - bundle-install/bundle-install
+      - run: sudo apt-get install libpq-dev
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
