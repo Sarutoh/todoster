@@ -34,6 +34,9 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
       - node/install-packages:
           pkg-manager: yarn
       #     cache-key: "yarn.lock"
@@ -46,9 +49,6 @@ jobs:
       - run: 
           name: Rspec
           command: bundle exec rspec
-      - run:
-          name: Rubocop
-          command: rubocop
 workflows:
   version: 2
   build_and_test:
