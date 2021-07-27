@@ -16,6 +16,8 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
 group :development, :test do
+  gem 'factory_bot_rails'
+  gem 'faker', '~> 2.18'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.0'
 end
@@ -31,6 +33,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'simplecov', '~> 0.21.2'
+  gem 'test-prof', '~> 1.0', '>= 1.0.6'
   gem 'webdrivers'
 end
 
