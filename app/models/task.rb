@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
+  MIN_TITLE_LENGTH = 6
+  MAX_TITLE_LENGTH = 200
+
+  # TODO: cover or remove this
+
   before_save do
     if completed_changed? && completed
       items.update_all(completed: true)
@@ -13,5 +18,5 @@ class Task < ApplicationRecord
 
   has_many :items, dependent: :destroy
 
-  validates :title, presence: true, length: { in: 6..20 }, allow_blank: false
+  validates :title, presence: true, length: { in: MIN_TITLE_LENGTH..MAX_TITLE_LENGTH }, allow_blank: false
 end

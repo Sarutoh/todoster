@@ -34,7 +34,9 @@ Layout/LineEndStringConcatenationIndentation:
   Enabled: true
 Layout/SpaceBeforeBrackets:
   Enabled: true
-
+Layout/ExtraSpacing:
+  Exclude:
+    - 'Gemfile'
 # Lint
 
 Lint/AmbiguousAssignment:

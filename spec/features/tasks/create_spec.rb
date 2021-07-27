@@ -5,12 +5,11 @@ feature 'Create task: ', type: :feature do
     let(:current_user) { create(:user) }
     let(:incorrect_value) { 'task1' }
     let(:correct_value) { 'task_1' }
-    let(:tasks_new_path) { 'tasks/new' }
     let(:success_message) { 'Task was successfully created.' }
 
     before do
       sign_in(current_user)
-      visit tasks_new_path
+      visit new_task_path
     end
 
     scenario 'Page have content new task' do
@@ -24,7 +23,7 @@ feature 'Create task: ', type: :feature do
         click_button 'Add'
       end
 
-      expect(page).to have_content('Title is too short (minimum is 6 characters)')
+      expect(page).to have_content("Title is too short (minimum is #{Task::MIN_TITLE_LENGTH} characters)")
       expect(Task.count).to eq(0)
       expect(current_path).to eq(tasks_path)
     end

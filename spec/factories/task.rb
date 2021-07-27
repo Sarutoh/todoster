@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :task do
-    title { Faker::Beer.brand }
+    title { Faker::Lorem.characters(number: 6..200) }
 
     association :user
   end
