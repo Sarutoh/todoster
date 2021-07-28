@@ -16,20 +16,10 @@ AllCops:
     - 'config/environments/*'
 
 # Gemspec
-
 Gemspec/DateAssignment:
   Enabled: true
 
-# Metrics
-
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*.rb'
-Metrics/AbcSize:
-  Enabled: false
-
 # Layuot
-
 Layout/LineEndStringConcatenationIndentation:
   Enabled: true
 Layout/SpaceBeforeBrackets:
@@ -37,8 +27,8 @@ Layout/SpaceBeforeBrackets:
 Layout/ExtraSpacing:
   Exclude:
     - 'Gemfile'
-# Lint
 
+# Lint
 Lint/AmbiguousAssignment:
   Enabled: true
 Lint/DeprecatedConstants:
@@ -75,12 +65,19 @@ Lint/UnmodifiedReduceAccumulator:
   Enabled: true
 
 # Naming
-
 Naming/InclusiveLanguage:
   Enabled: true
 
-# Style
+# Metrics
+Metrics/MethodLength:
+   Max: 20
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+Metrics/AbcSize:
+  Enabled: false
 
+# Style
 Style/ArgumentsForwarding:
   Enabled: true
 Style/CollectionCompact:

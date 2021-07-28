@@ -2,7 +2,7 @@
 
 feature 'Create task: ', type: :feature do
   context 'With autorization' do
-    let(:current_user) { create(:user) }
+    let_it_be(:current_user) { create(:user) }
     let(:incorrect_value) { 'task1' }
     let(:correct_value) { 'task_1' }
     let(:success_message) { 'Task was successfully created.' }

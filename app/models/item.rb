@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class Item < ApplicationRecord
-  # TODO: cover or remove this
-
-  after_save do
+  after_update do
     task.update!(completed: true) if task.items.count == task.items.completed.count
   end
 

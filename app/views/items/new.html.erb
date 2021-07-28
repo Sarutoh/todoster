@@ -2,4 +2,4 @@
 
 <%= render 'form', item: @item, button_name: 'Add' %>
 
-<%= link_to 'Back', task_items_path(@task) %>
+<%= link_to 'Back', task_items_path(@task, @item) %>

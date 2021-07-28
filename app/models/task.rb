@@ -4,9 +4,7 @@ class Task < ApplicationRecord
   MIN_TITLE_LENGTH = 6
   MAX_TITLE_LENGTH = 200
 
-  # TODO: cover or remove this
-
-  before_save do
+  after_update do
     if completed_changed? && completed
       items.update_all(completed: true)
     elsif completed_changed? && !completed
