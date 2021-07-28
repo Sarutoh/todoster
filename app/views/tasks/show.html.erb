@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 <p>
   <strong><h2>Task: <%= @task.title.capitalize %></h2></strong><br>
-  <% @task.items.each  do |item|%>
+  <% @task.items.each_with_index  do |item, index|%>
+  <div id=<%= "item-#{index}"%> >
   	<% if item.completed == true %>
 		<%= link_to "Re-do", task_item_path(@task, item) + '?item[completed]=false', method: :patch, class: 'btn btn-outline-danger btn-sm'%> 
 		<s><%= item.item %>|</s>
@@ -12,6 +13,7 @@
   <%= link_to "Edit", edit_task_item_path(@task, item) %>|
   <%= link_to "Delete", task_item_path(@task, item), method: :delete, data: {confirm: "Are you sure?"} %></br>
   <hr>
+  </div>
   <% end %>
 </p>
 <%= link_to 'Add item', new_task_item_path(@task) %> |

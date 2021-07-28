@@ -1,7 +1,9 @@
 <% if user_signed_in? %>
 	<% @items.each do |item| %>
+	<ul class='items'>
 		<p><%= item.item %></p>
 		<p><%= item%></p>
+	</ul>
 	<% end %>
 <% else %>
 	<%= render 'welcome_page' %>
