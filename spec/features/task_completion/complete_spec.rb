@@ -12,8 +12,6 @@ feature 'Complete task: ', type: :feature do
   end
 
   context 'complete task from tasks page' do
-    before { RSpec::Matchers.define_negated_matcher :and_not, :and }
-
     subject do
       find_link('Complete').click
       task.reload

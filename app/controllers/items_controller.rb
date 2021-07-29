@@ -3,10 +3,7 @@
 class ItemsController < ApplicationController
   before_action :find_item, only: %i[show edit update destroy]
 
-  def index
-    @task = current_user.tasks.find(params.require(:task_id))
-    @items = @task.items.order(created_at: :desc) if user_signed_in?
-  end
+  def index; end
 
   def show; end
 

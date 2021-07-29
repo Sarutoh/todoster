@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <p>
   <strong><h2>Task: <%= @task.title.capitalize %></h2></strong><br>
+  <h2>Items: </h2><br>
   <% @task.items.each_with_index  do |item, index|%>
   <div id=<%= "item-#{index}"%> >
   	<% if item.completed == true %>
