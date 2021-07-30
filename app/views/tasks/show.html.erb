@@ -5,18 +5,18 @@
   <% @task.items.each_with_index  do |item, index|%>
   <div id=<%= "item-#{index}"%> >
   	<% if item.completed == true %>
-		<%= link_to "Re-do", task_item_path(@task, item) + '?item[completed]=false', method: :patch, class: 'btn btn-outline-danger btn-sm'%> 
+		<%= link_to t('buttons.re_do'), task_item_path(@task, item) + '?item[completed]=false', method: :patch, class: 'btn btn-outline-danger btn-sm'%>
 		<s><%= item.item %>|</s>
 	<% else %>
-	    <%= link_to "Complete", task_item_path(@task, item) + '?item[completed]=true', method: :patch, class: 'btn btn-outline-primary btn-sm'%>    	
+	    <%= link_to t('buttons.complete'), task_item_path(@task, item) + '?item[completed]=true', method: :patch, class: 'btn btn-outline-primary btn-sm'%>
 		<%= item.item %>|
 	<% end %>
-  <%= link_to "Edit", edit_task_item_path(@task, item) %>|
-  <%= link_to "Delete", task_item_path(@task, item), method: :delete, data: {confirm: "Are you sure?"} %></br>
+  <%= link_to t('buttons.edit'), edit_task_item_path(@task, item) %>|
+  <%= link_to t('buttons.delete'), task_item_path(@task, item), method: :delete, data: { confirm: t('questions.on_delete') } %></br>
   <hr>
   </div>
   <% end %>
 </p>
-<%= link_to 'Add item', new_task_item_path(@task) %> |
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to t('buttons.add_item'), new_task_item_path(@task) %> |
+<%= link_to t('buttons.edit'), edit_task_path(@task) %> |
+<%= link_to t('buttons.back'), tasks_path %>

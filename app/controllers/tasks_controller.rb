@@ -22,7 +22,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to root_path, notice: 'Task was successfully created.' }
+        format.html { redirect_to root_path, notice: t('notices.on_create', model: Task.name) }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params.require(:id))
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to root_path, notice: 'Task was successfully updated.' }
+        format.html { redirect_to root_path, notice: t('notices.on_update', model: Task.name) }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -48,7 +48,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params.require(:id))
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to tasks_url, notice: t('notices.on_delete', model: Task.name) }
       format.json { head :no_content }
     end
   end
