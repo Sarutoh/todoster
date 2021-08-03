@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
+
   root 'tasks#index'
 end

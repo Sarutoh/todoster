@@ -1,6 +1,6 @@
 <h1>Editing Item</h1>
 
-<%= render 'form', item: @item %>
+<%= render t('form'), item: @item, button_name: t('buttons.update') %>
 
 
-<%= link_to 'Back', task_path(@task) %>
+<%= link_to t('buttons.back'), task_path(@task) %>

@@ -1,17 +1,18 @@
+<p id="notice"><%= notice %></p>
+
 <% if user_signed_in? %>
 	<% @tasks.each do |task| %>
 		<p>
 			<% if task.completed == true %>
-		    	<%= link_to "Re-do", task_path(task) + '?task[completed]=false', method: :patch, class: 'btn btn-outline-danger btn-sm'%> 
+		    	<%= link_to t('buttons.re_do'), task_path(task) + '?task[completed]=false', method: :patch, class: 'btn btn-outline-danger btn-sm'%>
 				<s><%= link_to task.title, task_path(task) %></s>
 		    <% else %>
-		    	<%= link_to "Complete", task_path(task) + '?task[completed]=true', method: :patch, class: 'btn btn-outline-primary btn-sm'%>    	
+		    	<%= link_to t('buttons.complete'), task_path(task) + '?task[completed]=true', method: :patch, class: 'btn btn-outline-primary btn-sm'%>
 				<%= link_to task.title, task_path(task) %>
 			<% end %>
 		</p>		
-		<%= link_to "Edit", edit_task_path(task)  %>|
-		<%= link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %>
+		<%= link_to t('buttons.edit'), edit_task_path(task)  %>|
+		<%= link_to t('buttons.delete'), task_path(task), method: :delete, data: { confirm: t('questions.on_delete') } %>
 		<hr>
 	<% end %>
-
 <% end %>

@@ -3,24 +3,24 @@
 class ItemsController < ApplicationController
   before_action :find_item, only: %i[show edit update destroy]
 
-  def index
-    @items = current_user.items.order(created_at: :desc) if user_signed_in?
-  end
+  def index; end
 
   def show; end
 
   def new
-    @item = task.items.build
+    @task = current_user.tasks.find(params.require(:task_id))
+    @item = @task.items.build
   end
 
   def edit; end
 
   def create
-    @item = task.items.build(item_params)
+    @task = current_user.tasks.find(params.require(:task_id))
+    @item = @task.items.build(item_params)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to task_path(task), notice: 'Item was successfully created.' }
+        format.html { redirect_to task_path(@task), notice: t('notices.on_create', model: Item.name) }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to task_path(task), notice: 'Item was successfully updated.' }
+        format.html { redirect_to task_path(@task), notice: t('notices.on_update', model: Item.name) }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to task_path(@item.task), notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to task_path(@item.task), notice: t('notices.on_delete', model: Item.name) }
       format.json { head :no_content }
     end
   end
@@ -53,14 +53,11 @@ class ItemsController < ApplicationController
   private
 
   def find_item
-    @item = task.items.find(params[:id])
+    @task = current_user.tasks.find(params.require(:task_id))
+    @item = @task.items.find(params[:id])
   end
 
   def item_params
     params.require(:item).permit(:item, :completed)
-  end
-
-  def task
-    current_user.tasks.find(params.require(:task_id))
   end
 end

@@ -1,8 +1,0 @@
-<% if user_signed_in? %>
-	<% @items.each do |item| %>
-		<p><%= item.item %></p>
-		<p><%= item%></p>
-	<% end %>
-<% else %>
-	<%= render 'welcome_page' %>
-	<% end %>
