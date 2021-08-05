@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Todoster
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body{:style => "text-align: center"}
+    %nav.navbar.navbar-default
+      .container
+        .navbar-header
+          = link_to t('buttons.todoster'), root_path, class:"navbar-brand"
+        %ul.nav.navbar-nav.navbar-right
+          - if current_user.present?
+            %li
+              = link_to t('buttons.sign_out'), destroy_user_session_path, method: :delete
+          - else
+            %li
+              = link_to t('buttons.log_in'), new_user_session_path
+            %li
+              = link_to t('buttons.sign_up'), new_user_registration_path
+        - if user_signed_in?
+          = link_to t('buttons.create_task'), new_task_path, class:"navbar-text navbar-link"
+    .container
+      = yield
