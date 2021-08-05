@@ -1,0 +1,10 @@
+= form_for [@task, @item] do |form|
+  - if item.errors.any?
+    #error_explanation
+      %ul
+        - item.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = form.text_field :item, class: "form-control"
+  .form-group
+    = form.submit button_name, class: "btn btn-primary"

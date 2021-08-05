@@ -1,0 +1,3 @@
+%h1 Editing Item
+= render t('form'), item: @item, button_name: t('buttons.update')
+= link_to t('buttons.back'), task_path(@task)

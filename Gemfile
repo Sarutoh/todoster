@@ -6,6 +6,7 @@ ruby '3.0.0'
 gem 'bootsnap',                     '>= 1.4.2', require: false
 gem 'devise',                       '~> 4.7', '>= 4.7.1'
 gem 'haml',                         '~> 5.1', '>= 5.1.2'
+gem 'haml-rails'
 gem 'jbuilder',                     '~> 2.7'
 gem 'pg',                           '>= 0.18', '< 2.0'
 gem 'puma',                         '~> 4.3'
